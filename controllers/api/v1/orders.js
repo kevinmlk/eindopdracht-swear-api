@@ -1,5 +1,5 @@
 // Include model
-const Order = require('../../../models/Order');
+const Order = require('../../../models/api/v1/Order');
 
 // Define controllers
 
