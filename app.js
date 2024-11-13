@@ -8,7 +8,7 @@ const logger = require('morgan');
 const apiOrderRouter = require('./routes/api/v1/orders');
 
 // Import mongoose
-const mongoose = require('mongoose');
+
 
 // Import cors
 const cors = require('cors');

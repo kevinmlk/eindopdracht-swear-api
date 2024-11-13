@@ -1,20 +1,17 @@
 // Include mongoose
 const mongoose = require('mongoose');
 
-// Include Schema
-const Schema = mongoose.Schema;
-
-// Define order schema
+// Define schema
 const orderSchema = new mongoose.Schema({
-  userId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'User', 
-    required: true 
-  }
-}, {
-  timestamps: true
+  text: {
+    type: String,
+    required: true
+  },
+  user: String
 });
 
-// Export order model
+// Define model
 const Order = mongoose.model('Order', orderSchema);
+
+// Export model
 module.exports = Order;

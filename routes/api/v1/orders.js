@@ -5,14 +5,12 @@ const express = require('express');
 const router = express.Router();
 
 // Include controller
-const OrdersController = require('../../../controllers/api/v1/orders');
+const orderController = require('../../../controllers/api/v1/orders');
 
 // Define routes
-router.get('/', OrdersController.index);
-// router.get('/:id', OrdersController.show);
-// router.post('/', OrdersController.create);
-// router.put('/:id', OrdersController.update); // Only for admins
-// router.delete('/:id', OrdersController.destroy); // Only for admins
+router.get('/', orderController.index);
+
+router.post('/', orderController.create);
 
 // Export routes
 module.exports = router;
