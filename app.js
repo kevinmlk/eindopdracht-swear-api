@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 // Define routes
 const apiOrderRouter = require('./routes/api/v1/orders');
+const apiUserRouter = require('./routes/api/v1/users');
 
 // Import mongoose
 const mongoose = require('mongoose');
@@ -20,7 +21,6 @@ const cors = require('cors');
 const connection = config.get('mongodb');
 console.log(`Connecting to MongoDB: ${connection}`);
 mongoose.connect(connection);
-
 
 const app = express();
 
@@ -39,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Place routes on URL
 app.use('/api/v1/orders', apiOrderRouter);
+app.use('/api/v1/users', apiUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
