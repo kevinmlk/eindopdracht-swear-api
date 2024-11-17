@@ -12,8 +12,42 @@ const index = async (req, res) => {
       status: "success",
       message: "GETTING orders",
       data: {
-        text: "Hello World",
-        user: "John Doe"
+        id: 1,
+        userId: 1,
+        sneakerConfig: {
+          sneakerModelId: 1,
+          shoeSize: 2,
+          colorOptions: {
+            laces: "black",
+            sole: "black",
+            upper: "white",
+            extraOption1: "yellow",
+            extraOption2: "red"
+          },
+          materialOptions: {
+            laces: "cotton",
+            sole: "rubber",
+            upper: "leather"
+          },
+          charms: ["skateboard", "sticker"],
+          patterns: "stripe",
+          customText: "custom text"
+        },
+        status: "pending",
+        contactDetails: {
+          firstname: "John",
+          lastname: "Doe",
+          email: "j@j.com",
+          phone: "1234567890",
+          address: {
+            street: "123 Main St",
+            city: "Anytown",
+            postalCode: "1020",
+            country: "Belgium"
+          }
+        },
+        orderDate: "2021-01-01",
+        lastUpdated: "2021-01-01"
       }
     });
   } catch (err) {
