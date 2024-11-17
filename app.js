@@ -8,10 +8,19 @@ const logger = require('morgan');
 const apiOrderRouter = require('./routes/api/v1/orders');
 
 // Import mongoose
+const mongoose = require('mongoose');
 
+// Import config
+const config = require('config');
 
 // Import cors
 const cors = require('cors');
+
+// Connect to MongoDB
+const connection = config.get('mongodb');
+console.log(`Connecting to MongoDB: ${connection}`);
+mongoose.connect(connection);
+
 
 const app = express();
 
