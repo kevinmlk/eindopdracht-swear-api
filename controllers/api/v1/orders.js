@@ -23,18 +23,18 @@ const index = async (req, res) => {
 const create = async (req, res) => {
   try {
     // Create order
-    const {text, user} = req.body;
+    let order = new Order();
+    
 
     // Save order
-    // const savedOrder = await order.save();
+    const savedOrder = await order.save();
 
     // Send response
     res.json({
       status: "success",
       message: "CREATING order",
       data: {
-        text,
-        user
+        order: savedOrder
       }
     });
   } catch (err) {
