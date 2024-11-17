@@ -4,13 +4,15 @@ const express = require('express');
 // Include router
 const router = express.Router();
 
-// Include controller
+// Include controllers
 const userController = require('../../../controllers/api/v1/users');
+const authController = require('../../../controllers/api/v1/auth');
 
 // Define routes
 router.get('/', userController.index);
 
-router.post('/', userController.create);
+router.post('/register', authController.register);
+// router.post('/login', authController.login);
 
 // Export routes
 module.exports = router;
