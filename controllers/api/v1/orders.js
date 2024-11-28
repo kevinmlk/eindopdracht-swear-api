@@ -88,8 +88,12 @@ const update = async (req, res) => {
     // Get order
     const order = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
+    if (!order) {
+      res.status(404).json({ status: "error", message: "Order not found" });
+      return;
+    }
+
     // Set order data
-    order.userId = req.body.userId;
     order.sneakerConfig.shoeSize = req.body.sneakerConfig.shoeSize;
     order.sneakerConfig.colorOptions.laces = req.body.sneakerConfig.colorOptions.laces;
     order.sneakerConfig.colorOptions.sole = req.body.sneakerConfig.colorOptions.sole;
@@ -117,7 +121,7 @@ const update = async (req, res) => {
       status: "success",
       message: "UPDATING order",
       data: {
-        order: updatedOrder
+        order: order
       }
     });
   } catch (err) {
