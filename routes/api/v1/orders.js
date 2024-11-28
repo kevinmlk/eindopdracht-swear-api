@@ -14,5 +14,7 @@ router.get('/:id', orderController.show);
 
 router.post('/', orderController.create);
 
+router.patch('/:id', orderController.update);
+
 // Export routes
 module.exports = router;
