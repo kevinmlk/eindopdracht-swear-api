@@ -20,6 +20,24 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    // Get order
+    const order = await Order.findById(req.params.id);
+
+    // Send response
+    res.json({
+      status: "success",
+      message: "GETTING order",
+      data: {
+        order: order
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+      }
+}
+
 const create = async (req, res) => {
   try {
     // Create order
@@ -68,5 +86,6 @@ const create = async (req, res) => {
 // Export controller
 module.exports = {
   index,
-  create
+  create,
+  show
 }

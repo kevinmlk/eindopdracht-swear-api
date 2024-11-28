@@ -10,6 +10,8 @@ const orderController = require('../../../controllers/api/v1/orders');
 // Define routes
 router.get('/', orderController.index);
 
+router.get('/:id', orderController.show);
+
 router.post('/', orderController.create);
 
 // Export routes
