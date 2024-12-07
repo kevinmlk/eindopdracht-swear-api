@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // Define routes
-const apiOrderRouter = require('./routes/api/v1/orders');
-const apiUserRouter = require('./routes/api/v1/users');
+const apiOrdersRouter = require('./routes/api/v1/orders');
+const apiUsersRouter = require('./routes/api/v1/users');
 
 // Import mongoose
 const mongoose = require('mongoose');
@@ -17,6 +17,10 @@ const config = require('config');
 // Import cors
 const cors = require('cors');
 
+// Import passport
+const passport = require('passport');
+require('./passport/api/v1/passport');
+
 // Connect to MongoDB
 const connection = config.get('mongodb');
 console.log(`Connecting to MongoDB: ${connection}`);
@@ -26,6 +30,9 @@ const app = express();
 
 // Enable cors
 app.use(cors());
+
+// Initialize passport
+app.use(passport.initialize());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,8 +45,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Place routes on URL
-app.use('/api/v1/orders', apiOrderRouter);
-app.use('/api/v1/users', apiUserRouter);
+app.use('/api/v1/orders', passport.authenticate('jwt', { session: false }), apiOrdersRouter);
+app.use('/api/v1/users', apiUsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
