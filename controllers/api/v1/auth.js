@@ -51,12 +51,20 @@ const login = async (req, res) => {
   try {
 
     const user = await User.authenticate()(req.body.username, req.body.password).then(result => {
+
+      if (!result.user) {
+        return res.status(401).json({ status: "failed", message: "User not found" });
+      }
+
+      // Generate token
+      const token = jwt.sign({ id: result.user._id }, 'secret');
+
       // Send response
       res.json({
         status: "success",
         message: "LOGGING IN user",
         data: {
-          user: result
+          token: token
         }
       });
     });
