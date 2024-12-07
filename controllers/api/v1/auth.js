@@ -1,6 +1,9 @@
 // Include user model
 const User = require('../../../models/api/v1/User');
 
+// Include jsonwebtoken
+const jwt = require('jsonwebtoken');
+
 // Include passport
 // const passport = require('../../../passport/api/v1/passport');
 
@@ -26,12 +29,16 @@ const register = async (req, res) => {
     // Save user
     const savedUser = await user.save();
 
+    // Generate token
+    const token = jwt.sign({ id: savedUser._id }, 'secret');
+
     // Send response
     res.json({
       status: "success",
       message: "CREATING user",
       data: {
-        user: savedUser
+        user: savedUser,
+        token: token
       }
     });
   } catch (err) {
@@ -53,7 +60,7 @@ const login = async (req, res) => {
         }
       });
     });
-    
+
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
