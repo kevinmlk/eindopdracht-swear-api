@@ -129,10 +129,33 @@ const update = async (req, res) => {
   }
 }
 
+const destroy = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+
+    if (!order) {
+      res.status(404).json({ status: "error", message: "Order not found" });
+      return;
+    }
+
+    // Send response
+    res.json({
+      status: "success",
+      message: "DELETING order",
+      data: {
+        order: order
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+}
+
 // Export controller
 module.exports = {
   index,
   create,
   show,
-  update
+  update,
+  destroy
 }

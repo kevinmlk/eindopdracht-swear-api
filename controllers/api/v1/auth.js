@@ -39,5 +39,25 @@ const register = async (req, res) => {
   }
 }
 
+// Login user method
+const login = async (req, res) => {
+  try {
+
+    const user = await User.authenticate()(req.body.username, req.body.password).then(result => {
+      // Send response
+      res.json({
+        status: "success",
+        message: "LOGGING IN user",
+        data: {
+          user: result
+        }
+      });
+    });
+    
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+}
+
 // Export controller
-module.exports = { register };
+module.exports = { register, login };

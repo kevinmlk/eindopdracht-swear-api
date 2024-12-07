@@ -16,5 +16,7 @@ router.post('/', orderController.create);
 
 router.patch('/:id', orderController.update);
 
+router.delete('/:id', orderController.destroy);
+
 // Export routes
 module.exports = router;

@@ -12,7 +12,7 @@ const authController = require('../../../controllers/api/v1/auth');
 router.get('/', userController.index);
 
 router.post('/register', authController.register);
-// router.post('/login', authController.login);
+router.post('/login', authController.login);
 
 // Export routes
 module.exports = router;
