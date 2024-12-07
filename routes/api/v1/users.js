@@ -11,6 +11,8 @@ const authController = require('../../../controllers/api/v1/auth');
 // Define routes
 router.get('/', userController.index);
 
+router.delete('/:id', userController.destroy);
+
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
