@@ -10,6 +10,7 @@ const authController = require('../../../controllers/api/v1/auth');
 
 // Define routes
 router.get('/', userController.index);
+router.get('/:id', userController.show);
 
 router.delete('/:id', userController.destroy);
 

@@ -12,6 +12,8 @@ router.get('/', orderController.index);
 
 router.get('/:id', orderController.show);
 
+router.get('/user/:userId', orderController.showByUser);
+
 router.post('/', orderController.create);
 
 router.patch('/:id', orderController.update);

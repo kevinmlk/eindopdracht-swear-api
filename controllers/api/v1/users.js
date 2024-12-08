@@ -20,6 +20,24 @@ const index = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    // Get user
+    const user = await User.findById(req.params.id);
+
+    // Send response
+    res.json({
+      status: "success",
+      message: "GETTING user",
+      data: {
+        user: user
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+}
+
 const destroy = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
@@ -71,6 +89,7 @@ const destroy = async (req, res) => {
 // Export controller
 module.exports = {
   index,
+  show,
   destroy,
   // create
 }

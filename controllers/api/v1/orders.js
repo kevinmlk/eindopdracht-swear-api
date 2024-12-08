@@ -38,6 +38,24 @@ const show = async (req, res) => {
       }
 }
 
+const showByUser = async (req, res) => {
+  try {
+    // Get order
+    const orders = await Order.find({ userId: req.params.userId });
+
+    // Send response
+    res.json({
+      status: "success",
+      message: "GETTING orders",
+      data: {
+        orders: orders
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", message: err.message });
+  }
+}
+
 const create = async (req, res) => {
   try {
     // Create order
@@ -156,6 +174,7 @@ module.exports = {
   index,
   create,
   show,
+  showByUser,
   update,
   destroy
 }

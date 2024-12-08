@@ -64,6 +64,7 @@ const login = async (req, res) => {
         status: "success",
         message: "LOGGING IN user",
         data: {
+          user: result.user._id,
           token: token
         }
       });
