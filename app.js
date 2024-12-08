@@ -7,6 +7,7 @@ const logger = require('morgan');
 // Define routes
 const apiOrdersRouter = require('./routes/api/v1/orders');
 const apiUsersRouter = require('./routes/api/v1/users');
+const apiCartRouter = require('./routes/api/v1/cart');
 
 // Import mongoose
 const mongoose = require('mongoose');
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Place routes on URL
 app.use('/api/v1/orders', passport.authenticate('jwt', { session: false }), apiOrdersRouter);
 app.use('/api/v1/users', apiUsersRouter);
+app.use('/api/v1/cart', apiCartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
